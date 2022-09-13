@@ -1,5 +1,4 @@
 package com.bl.empwageoops;
-
 import java.util.ArrayList;
 
 public class EmpWageBuilder implements ComputeEmpWage {
