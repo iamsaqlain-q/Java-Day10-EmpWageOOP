@@ -1,19 +1,19 @@
 package com.bl.empwageoops;
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements ComputeEmpWage {
 	
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
 	
 	private int numberOfCompanies = 0;
 	private CompanyEmpWage[] companyWageArray;
-		
+	
 	public EmpWageBuilder() {
 		companyWageArray = new CompanyEmpWage[5];
 	}
 
 	public static void main(String args[]) {
-		EmpWageBuilder wageCalculator = new EmpWageBuilder();
+		ComputeEmpWage wageCalculator = new EmpWageBuilder();
 	
 		wageCalculator.addCompany("Google", 50, 15, 200);
 		wageCalculator.addCompany("Amazon", 80, 20, 120);	
@@ -21,12 +21,12 @@ public class EmpWageBuilder {
 		wageCalculator.computeEmpWage();
 	}
 	
-	private void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
+	public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
 		companyWageArray[numberOfCompanies] = new CompanyEmpWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
 		numberOfCompanies++;
 	}
 	
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i=0; i<numberOfCompanies; i++) {
 			companyWageArray[i].setTotalEmpWage(this.computeEmpWage(companyWageArray[i]));
 			System.out.println(companyWageArray[i]);
